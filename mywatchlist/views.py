@@ -11,19 +11,19 @@ context = {
     "mywatchlist_watched": sum([i.watched for i in mywatchlist_data]),
     "mywatchlist_not_watched": sum([not i.watched for i in mywatchlist_data]),
 }
-def show_watchlist(request):
+def show_mywatchlist_html(request):
     return render(
         request,
         "mywatchlist.html",
         context,
     )
 
-def show_watchlist_json(request):
+def show_mywatchlist_json(request):
     return HttpResponse(
         serializers.serialize("json", mywatchlist_data), content_type="application/json"
     )
 
-def show_watchlist_xml(request):
+def show_mywatchlist_xml(request):
     return HttpResponse(
         serializers.serialize("xml", mywatchlist_data), content_type="application/xml"
     )
