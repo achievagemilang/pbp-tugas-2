@@ -1,0 +1,112 @@
+[
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 1,
+      "fields": {
+        "watched": true,
+        "title": "Thor: Love and Thunder",
+        "rating": 4,
+        "release_date": "2022-07-06",
+        "review": "Watch along in cinema with my sister. I feel like it's a little bit messy in the plot, but still very funny and exciting to watch."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 2,
+      "fields": {
+        "watched": true,
+        "title": "Avengers Infinity War",
+        "rating": 5,
+        "release_date": "2018-04-25",
+        "review": "I think this film is one of the best films ever made by Marvel Studios. The highlight that I got after watching this film was the fun and cool CGI."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 3,
+      "fields": {
+        "watched": true,
+        "title": "Dilan 1990",
+        "rating": 5,
+        "release_date": "2018-01-25",
+        "review": "One of the good Indonesian films with the theme of teenage romance growing up. Maybe a little cringe because of the pick-up lines but still interesting to watch."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 4,
+      "fields": {
+        "watched": true,
+        "title": "Joker",
+        "rating": 5,
+        "release_date": "2019-10-02",
+        "review": "A film that is quite different because of a different point of view as well, which is to tell how a villain is born. Recommended."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 5,
+      "fields": {
+        "watched": false,
+        "title": "5 cm",
+        "rating": 4,
+        "release_date": "2012-12-12",
+        "review": "Indonesian drama films which are said to be quite good to watch. I haven't watched it yet."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 6,
+      "fields": {
+        "watched": false,
+        "title": "Mencuri Raden Saleh",
+        "rating": 5,
+        "release_date": "2022-08-25",
+        "review": "One of the movies that are still discussed until right now. I still haven't watched it yet, but the reviews are very positive."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 7,
+      "fields": {
+        "watched": true,
+        "title": "The Greatest Showman",
+        "rating": 5,
+        "release_date": "2017-12-29",
+        "review": "What can i say? It's an AMAZING musical drama movie!"
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 8,
+      "fields": {
+        "watched": true,
+        "title": "Train to Busan",
+        "rating": 5,
+        "release_date": "2016-07-20",
+        "review": "A very good South-Korean movie. It tells about the story of zombies apocalypse in train."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 9,
+      "fields": {
+        "watched": false,
+        "title": "Orphan: First Kill",
+        "rating": 3,
+        "release_date": "2022-08-31",
+        "review": "A psychological horror-thriller film. I haven't watched it."
+      }
+    },
+    {
+      "model": "mywatchlist.mywatchlist",
+      "pk": 10,
+      "fields": {
+        "watched": false,
+        "title": "Transformers: The Last Knight",
+        "rating": 3,
+        "release_date": "2017-07-21",
+        "review": "Haven't watched it yet. Looks cool but the reviews are mediocre."
+      }
+    }
+  ]
