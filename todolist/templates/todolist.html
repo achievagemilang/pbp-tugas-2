@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+ <h2>Hello, {{ username }}</h2>
+
+ <table>
+    <tr>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Created Date</th>
+        <th>Status</th>
+        <th>Check</th>
+        <th>Delete</th>
+    </tr>
+
+    {% for task in todolist  %}
+    <tr>
+
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.date }}</td>
+        <td>
+            {% if task.is_finished %}
+            Finished
+            {% else %}
+            Not Finished
+            {% endif %}
+        </td>
+        <td>
+            <input 
+            type="checkbox" 
+            name="checkbox"      
+            id='{{task.id}}' 
+             {% if task.is_finished %} checked {% endif %}
+             onchange="location.href=`{% url 'todolist:toggle_is_finished' task.id %}`"   />
+        </td>
+        <td><a href="{% url 'todolist:delete_task' task.id %}"><i style="font-size:19px;color:black " class="fa">&#xf014;</i></a></td>
+    </tr>
+    {% endfor %}
+
+
+    {% if todolist.count == 0 %}
+    <p>Kamu belum memiliki task!</p>
+    {% endif %}   
+
+</table>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
+ <button><a href="{% url 'todolist:create_task' %}">Create task</a> </button>
+ <button><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
+
+ {% endblock content %}
