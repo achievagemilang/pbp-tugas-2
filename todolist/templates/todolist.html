@@ -1,54 +1,71 @@
-{% extends 'base.html' %}
+ {% extends 'base.html' %}
 
- {% block content %}
+{% block content %}
 
- <h2>Hello, {{ username }}</h2>
-
- <table>
-    <tr>
-        <th>Task</th>
-        <th>Description</th>
-        <th>Created Date</th>
-        <th>Status</th>
-        <th>Check</th>
-        <th>Delete</th>
-    </tr>
-
-    {% for task in todolist  %}
-    <tr>
-
-        <td>{{ task.title }}</td>
-        <td>{{ task.description }}</td>
-        <td>{{ task.date }}</td>
-        <td>
-            {% if task.is_finished %}
-            Finished
-            {% else %}
-            Not Finished
-            {% endif %}
-        </td>
-        <td>
-            <input 
-            type="checkbox" 
-            name="checkbox"      
-            id='{{task.id}}' 
-             {% if task.is_finished %} checked {% endif %}
-             onchange="location.href=`{% url 'todolist:toggle_is_finished' task.id %}`"   />
-        </td>
-        <td><a href="{% url 'todolist:delete_task' task.id %}"><i style="font-size:19px;color:black " class="fa">&#xf014;</i></a></td>
-    </tr>
-    {% endfor %}
+<div class="todolist">
+    <nav class="navbar navbar-expand-lg" style="background-color:  #FFD24C;">
+        <div class="container-fluid">
+            <ul class="navbar-nav mx-3">
+                <li class="navbar-brand">
+                    <a class="nav-link" style="color: #453506; font-size: 35px;"> Hello, <strong><span class="text" style="color: #453506; font-size: 35px;">{{username}}! </span></strong></a>
+                </li>
+            </ul>                                                                                  
+        </div>
+        
+        <div class="mr-auto">
+            <ul class="navbar-nav mx-3">
+                <li>
+                    <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; border-color: #453506; padding: 10px 10px; text-decoration: none; width: 120px;
+                font-size: 16px;" type="button"><a href="{% url 'todolist:create_task' %}" class="text-decoration-none" style="color: #453506;">Create Task</a></button>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="mr-auto">
+        <ul class="navbar-nav mx-3">
+            <li class="navbar-brand">
+                <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; border-color: #453506; padding: 10px 10px; text-decoration: none; width: 120px;
+                font-size: 16px;" type="button"><a href="{% url 'todolist:logout_user' %}" class="text-decoration-none"style="color: #453506;">Logout</a></button>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 
+<br></br>
+<br></br>
+
+<div class="mx-3 d-flex flex-row flex-wrap justify-content-center">
     {% if todolist.count == 0 %}
-    <p>Kamu belum memiliki task!</p>
-    {% endif %}   
+    <div class="alert" style="background-color: #FFD24C;" role="alert">
+        Kamu belum memiliki task
+    </div>
+    {% endif %}
+    
+    {% for task in todolist %}
+    <div class="card m-2" style="width: 18rem;background-color: #FFD24C; "  >
+        <div class="card-body" style="background-color: #FFD24C;">
+            <h5 class="card-title" style="text-align: center; color:#453506"><strong>{{task.title}}</strong></h5>
+            <p class="card-text" style="text-align: center; color:#453506">{{task.description}}</p>
+        </div>
+        <ul class="list-group" style="background-color: #FFD24C; text-align: center;">
+            <li class="list-group-item" style="background-color: #FFD24C; color: #453506;">Created Date: <span style="color: #453506;"><strong>{{task.date}}</strong></span></li>
+            {% if task.is_finished %}
+            <li class="list-group-item" style="background-color: #FFD24C; color: #453506;">Status: <span style = "color: rgb(1, 179, 1);"><strong>Done</strong></span></li>
+            {% else %}
+            <li class="list-group-item" style="background-color: #FFD24C; color: #453506;">Status: <span style = "color: rgb(183, 59, 17);"><strong>To Do</strong></span></li>
+            {% endif %}
+        </ul>
+        <div class="card-body justify-content-center" style="text-align: center;">
+            <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+            font-size: 12px;" type="button"><a href="{% url 'todolist:toggle_is_finished' task.id%}" class="text-decoration-none" style="color: #453506;">Done/Undone</a></button>
+            <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+            font-size: 12px;" type="button"><a href="{% url 'todolist:delete_task' task.id%}" class="text-decoration-none" style="color: #453506;">Delete Task</a></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
 
-</table>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
- <button><a href="{% url 'todolist:create_task' %}">Create task</a> </button>
- <button><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
-
- {% endblock content %}
+{% endblock content %}

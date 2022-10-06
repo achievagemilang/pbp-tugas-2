@@ -6,40 +6,52 @@
 
 {% block content %}
 
-<div class = "login">
+<div class = "login ">
+<br></br>
+<br></br>
+<br></br>
 
-    <h1>Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
+<div class="mx-3 d-flex flex-row flex-wrap justify-content-center">
+    <div class="card mx-auto flex-wrap" style="width: 24rem; background-color: #FFD24C;">
+        <div class="card-body mx-auto">
+        <h1 class="card-title" style="color: #453506"><strong>LOGIN</strong></h1>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <tr>
+                    <a class="text-decoration-none", style="color: #453506;"><strong>Username</strong></a>
+                    <td><input type="text" name="username" placeholder="Enter your username.." class="form-control"></td>
+                </tr>
+                <hr/>
+                <tr>
+                    <a class="text-decoration-none", style="color: #453506;"><strong>Password</strong></a>
+                    <td><input type="password" name="password" placeholder="Enter your password.." class="form-control"></td>
+                </tr>
+                
+                <tr>
+                    <div class="div d-flex justify-content-center mt-4">
+                        <input class="btn btn-primary" style= "background-color: #FFE69A; color: #453506; border-color: #453506;width: 140px;" type="submit" value="Login">
+                    </div>
+                </tr>    
+            </form>
+        </div>
 
     {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+    <div class="card-text mx-auto">
+        {% for message in messages %}
+        <div class="alert alert-info" role="alert">
+            {{message}}
+          </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
+    <a class="text-decoration-none mx-auto" style="color: #5e4808 ;font-size: 11px;"><strong>Don't have an account?</strong></a>
+        <button class="btn btn-primary mx-auto" type="button", style="background-color: #FFE69A; border-color: #453506; width: 140px;" b><a href="{% url 'todolist:register' %}" class="title text-decoration-none", style="color: #453506;">Create Account</a></button>
+    <hr>
+</div>
+</div>
 </div>
 
 {% endblock content %}

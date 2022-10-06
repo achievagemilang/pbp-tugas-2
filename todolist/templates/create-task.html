@@ -1,32 +1,34 @@
 {% extends 'base.html' %}
 
- {% block content %}
+{% block content %}
 
 
- <div class="create_task">
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Title: </td>
-                <td><input type="text" name="title" placeholder="Title" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Description: </td>
-                <td><input type="text" name="description" placeholder="Description" class="form-control"></td>
-            </tr>
-        </table>
-        
-        <tr>
-            <td></td>
-            <td><input class="btn submit" type="submit" value="Add Task" href="todolist:show_todolist"></td>
-        </tr>
-        
-    </form>
+<div class = "create-task justify-content-center">
+    <br></br>
+    <br></br>
+    <br></br>
+    <div class="mx-3 d-flex flex-row flex-wrap justify-content-center">
+        <div class="card mx-auto" style="width: 22rem; background-color: #FFD24C;">
+            <div class="card-body mx-auto">
+                <h1 class="card-title" style="color: #453506"><strong>CREATE TASK</strong></h1>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <td class="title" style="color: #453506;"><strong>Title</strong></td>
+                    <input type="text" name="title" placeholder="Enter your title.." class="form-control">
+                    <hr>
+                    <td class="title" style="color: #453506;"><strong>Description</strong></td>
+                    <input type="text" name="description" placeholder="Enter your description.." class="form-control">
     
- </div>
-
-
- {% endblock content %}
+                    <div class="div d-flex justify-content-center mt-3">
+                    <input class="btn submit" style= "background-color: #FFE69A; color: #453506; border-color: #453506;" type="submit" value="Add Task" href="todolist:show_todolist">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+{% endblock content %}

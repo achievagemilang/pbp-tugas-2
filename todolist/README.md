@@ -47,3 +47,47 @@
   7. Karena sudah melakukan deployment sebelumnya, maka lakukan proses deployment menggunakan Heroku dengan melakukan hal berikut:
       - Pull, add, commit, dan push file lokal ke repositori github. 
       - Run/Re-run deployment Actions, dan project ini berhasil ter-deploy di [Heroku](https://pbp-tugas-2-achievagemilang.herokuapp.com/).
+  
+  <br>
+  <br>
+  
+# Assignment 5: Web Design Using HTML, CSS, and CSS Framework
+  
+### What is the difference between Inline, Internal, and External CSS? What are the advantages and disadvantages of each style?
+Inline CSS adalah cara menulis kode CSS secara langsung pada elemen HTML. Kelebihan metode ini adalah sangat efektif apabila hanya ingin melakukan styling
+untuk satu elemen saja. Sedangkan kekurangannya adalah tidak terlalu efektif digunakan apabila styling multiple pages. Hal ini karena kita perlu setting secara satu per satu tiap elemen yang ada sehingga cenderung boros waktu.
+
+Internal CSS adalah cara menulis kode CSS pada tag `<style>` pada section `head`. Kelebihannya adalah meerupakan penggunaan efektif apabila ingin melakukan styling untuk 1 page saja. Sedangkan kekurangannya hampir sama dengan inline CSS, yakni tidak efektif karena cenderung boros akan waktu apabila kita ingin melakukan styling secara besar untuk multiple pages, apabila dengan penggunaan styling yang mirip.
+
+External CSS adalah cara menulis kode CSS pada file `.css` yang berada luar program yang kemudian terhubung dengan page-page website kita. Kelebihan metode ini adalah merupakan cara yang efektif untuk melakukan styling secara besar-besaran terhadap multiple page. Hal ini karena stylingnya akan digunakan untuk setiap komponen yang diseleksi. Karena bersifat applicable untuk setiap komponen yang sesuai, ada kalanya kita tidak ingin mengubah komponen tersebut menjadi design yang telah ditulis sebelumnya pada .css. Hal inilah yang menjadi kekurangan metode ini. Kita perlu membuat design terpisah untuk beberapa kasus elemen yang mungkin kita inginkan berbeda.    
+   
+### Describe the HTML5 tags that you know.
+Sumber rujukan: https://www.tutorialrepublic.com/html-reference/html5-tags.php
+
+Beberapa yang saya ketahui adalah:
+- `<a>` -> mendefinisikan hyperlink.
+- `br` -> membuat single line break.
+- `<form>` -> mendefinisikan HTML form untuk input user.
+- `<table>` -> mendefiniskan data berbentuk table.
+- `<h1>,<h2>, .. ,<h6>` -> membuat HTML heading. (indeks 1 paling besar).
+- `<input>` -> mendefinisikan input field untuk user menginput data.
+- dsb.
+  
+### Describe the types of CSS selectors you know.
+Sumber rujukan: https://www.w3schools.com/cssref/css_selectors.asp
+
+Beberapa yang saya ketahui adalah:
+- `*` -> Menseleksi semua komponen elemen.
+- `.[class_name]` -> Menseleksi semua elemen yang memiliki class="[class_name]". Contoh [class_name] = "card", maka seleksi class="card".
+- `[elemen]` -> Menseleksi tipe elemen yang merupakan [elemen]. Contoh [elemen] -> p, table, h5, dsb.
+- `[elemen].[class_name]` -> Menseleksi tipe elemen yang merupakan [elemen] dan mempunyai class [class_name].
+- `[elemen],[elemen2] -> Menseleksi lebih dari satu elemen dapat menggunakan separator koma.
+- `.[class_name]:hover -> Menseleksi semua elemen yang memiliki class=[class_name] ketika didatangi kursor mouse.
+- dsb.
+   
+### Explain how you would implement the checklist above.
+- Pertama, saya mencari inspirasi color pallete yang ingin saya gunakan pada https://flatuicolors.com/ dan https://colorhunt.co/palettes/white.
+- Instalasi bootstrap dengan menambahkan `<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">` dan `<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>` pada `base.html`.
+- Selanjutnya saya mulai melakukan styling untuk pages yang ada pada `templates` saya. Karena saya cukup newbie, kebanyakan styling saya menggunakan Inline CSS sehingga kurang efektif dan time-consuming. Akan tetapi, cukup menyenangkan dan saya mendapat pengalaman baru dari sini.
+- Selanjutnya, saya memastikan web responsif dengan bantuan acuan https://getbootstrap.com/docs/4.1/layout/overview/
+- Add, commit, and push. Setelah workflow, jalan maka akan terdeploy (link heroku masih sama dengan tugas 4 diatas). 

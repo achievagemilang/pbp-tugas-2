@@ -1,5 +1,10 @@
 table,
-th,
-td {
-  border: 2px solid black;
+th{
+  background-color : #ffdc74;
+  border: 2px solid #9f7e1b;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  transform: scale(1.1);
 }
