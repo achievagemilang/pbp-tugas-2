@@ -1,4 +1,4 @@
-# Assignment 3: Implement Data Delivery using Django
+# Assignment 4: Implementing Forms and Authentication Using Django
 
 **Nama                 :** Achieva Futura Gemilang
 
@@ -52,6 +52,15 @@
   <br>
   
 # Assignment 5: Web Design Using HTML, CSS, and CSS Framework
+  
+**Nama                 :** Achieva Futura Gemilang
+
+**NPM                  :** 2106750452
+
+**Kelas                :** PBP D
+
+**Link Heroku          :** https://pbp-tugas-2-achievagemilang.herokuapp.com/todolist
+<br>
   
 ### What is the difference between Inline, Internal, and External CSS? What are the advantages and disadvantages of each style?
 Inline CSS adalah cara menulis kode CSS secara langsung pada elemen HTML. Kelebihan metode ini adalah sangat efektif apabila hanya ingin melakukan styling
