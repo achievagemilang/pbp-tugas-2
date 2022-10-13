@@ -15,11 +15,11 @@
         <div class="mr-auto">
             <ul class="navbar-nav mx-3">
                 <li>
-                    <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; border-color: #453506; padding: 10px 10px; text-decoration: none; width: 120px;
-                font-size: 16px;" type="button"><a href="{% url 'todolist:create_task' %}" class="text-decoration-none" style="color: #453506;">Create Task</a></button>
-            </li>
-        </ul>
-    </div>
+                    <button class="btn btn-light float-right" data-bs-toggle="modal" data-bs-target="#modal" style="background-color: #FFE69A; color: #453506; border-color: #453506; padding: 10px 10px; text-decoration: none; width: 120px;
+                    font-size: 16px;" type="button"><a class="text-decoration-none" style="color: #453506;">Add Task</a></button>
+                </li>
+            </ul>
+        </div>
     
     <div class="mr-auto">
         <ul class="navbar-nav mx-3">
@@ -35,12 +35,12 @@
 <br></br>
 <br></br>
 
-<div class="mx-3 d-flex flex-row flex-wrap justify-content-center">
+<!-- <div class="mx-3 d-flex flex-row flex-wrap justify-content-center">
     {% if todolist.count == 0 %}
     <div class="alert" style="background-color: #FFD24C;" role="alert">
         Kamu belum memiliki task
     </div>
-    {% endif %}
+    {% endif %} 
     
     {% for task in todolist %}
     <div class="card m-2" style="width: 18rem;background-color: #FFD24C; "  >
@@ -65,7 +65,154 @@
     </div>
     {% endfor %}
 </div>
-</div>
+</div> -->
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center" style="background-color:  #FFD24C;">
+          <h5 class="modal-title" style = "align-content: center; color: #453506;"id="modalLabel">Add Task</h5>
+        </div>
+        <div class="modal-body">
+            <div>
+                <a class="text-decoration-none text-dark" style="color: #453506;">Title</a>
+                <input type="text" id="title" name="title" placeholder="Enter your title.." class="form-control">
+
+                <a class="text-decoration-none text-dark" style="color: #453506;">Description</a>
+                <input type="text" id="description" name="description" placeholder="Enter your description.." class="form-control">
+
+                <div class="div d-flex justify-content-center mt-3">
+                <button class="btn btn-success" style="background-color: #FFE69A; color: #453506; border-color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+                font-size: 16px;" data-bs-dismiss="modal" onclick="update()">Add Task</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" style="background-color: #FFE69A; color: #453506; border-color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+          font-size: 16px;" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+<div class="mx-3 d-flex flex-row flex-wrap justify-content-center" id="empty-task"></div>
+<div class="mx-3 d-flex flex-row flex-wrap justify-content-center" id="card"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+function update(){
+    $.ajax({
+        url: "/todolist/add/",
+        method: "POST",
+        headers: {
+          "X-CSRFToken": getCookie("csrftoken")
+        },
+        data:{
+          title : $('#title').val(),
+          description : $("#description").val(),
+        },
+      success: function(){
+        showTodolist();
+      },
+      error: function(){
+        alert("Error saat menambahkan file");
+      }
+    })}
+
+  function showTodolist() {
+    $.get("/todolist/json", function(data) {
+      $("#card").html("")
+      if(data.length == 0){
+          $("#empty-task").append(`<div class="alert" style="background-color: #FFD24C;" role="alert">
+            Kamu belum memiliki task
+            </div>
+        `)
+      }else{
+        $("#empty-task").empty()
+      }
+
+      for(let i = 0; i < data.length ; i++){
+            if(data[i].fields.is_finished){
+              $("#card").append(
+                `<div class="card m-2" style="width: 18rem;background-color: #FFD24C; "> 
+                <div class="card-body" style="background-color: #FFD24C;">
+                <h5 class="card-title" style="text-align: center; color:#453506"><strong>${data[i].fields.title}</strong></h5>
+                <p class="card-text" style="text-align: center; color:#453506">${data[i].fields.description}</p>
+                </div>
+                <ul class="list-group" style="background-color: #FFD24C; text-align: center;">
+                    <li class="list-group-item" style="background-color: #FFD24C; color: #453506;">Created Date: <span style="color: #453506;"><strong>${data[i].fields.date}</strong></span></li>
+                    
+                    <li class="list-group-item" style="background-color: #FFD24C; color: #453506;">Status: <span style = "color: rgb(1, 179, 1);"><strong>Done</strong></span></li>
+                    
+                </ul>
+                <div class="card-body justify-content-center" style="text-align: center;">
+                    <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+                    font-size: 12px;" type="button" id="toggle_finished">
+                    <a href="toggle-is-finished/${data[i].pk}/" class="text-decoration-none" style="color: #453506;">Done/Undone</a></button>
+                    <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+                    font-size: 12px;" type="button" id="delete" onclick="deleteTask(${data[i].pk})"><a class="text-decoration-none" style="color: #453506;">Delete Task</a></button>
+                </div>`
+            )
+          } else {
+            $("#card").append(
+              `<div class="card m-2 hover:scale-110 transition-all" style="width: 18rem;background-color: #FFD24C; "> 
+              <div class="card-body" style="background-color: #FFD24C;">
+              <h5 class="card-title" style="text-align: center; color:#453506"><strong>${data[i].fields.title}</strong></h5>
+              <p class="card-text" style="text-align: center; color:#453506">${data[i].fields.description}</p>
+              </div>
+              <ul class="list-group" style="background-color: #FFD24C; text-align: center;">
+                  <li class="list-group-item" style="background-color: #FFD24C; color: #453506;">Created Date: <span style="color: #453506;"><strong>${data[i].fields.date}</strong></span></li>
+                  
+                  <li class="list-group-item" style="background-color: #FFD24C; color: #453506;">Status: <span style = "color: rgb(183, 59, 17);"><strong>To Do</strong></span></li>
+                  
+              </ul>
+              <div class="card-body justify-content-center" style="text-align: center;">
+                  <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+                  font-size: 12px;" type="button" id="toggle_finished">
+                  <a href="toggle-is-finished/${data[i].pk}/" class="text-decoration-none" style="color: #453506;">Done/Undone</a>
+                  </button>
+                  <button class="btn btn-light float-right" style="background-color: #FFE69A; color: #453506; padding: 10px 10px; text-decoration: none; width: 100px;
+                  font-size: 12px;" type="button" id="delete" onclick="deleteTask(${data[i].pk})"><a class="text-decoration-none" style="color: #453506;">Delete Task</a></button>
+              </div>`
+          )
+          }
+        }
+      });
+    }
+    $(document).ready(function(){
+        showTodolist();
+    });
+
+    const deleteTask = (pk) => {
+    $.ajax({
+        url: `/todolist/delete/${pk}/`,
+        type: "DELETE",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+          },
+        success: function(){
+          showTodolist();
+        },
+    })
+}
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+
+</script>
 {% endblock content %}
